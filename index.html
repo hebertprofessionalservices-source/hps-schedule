@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HPS Business Growth Playbook — Hebert Professional Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2d5a;
+    --blue: #2563c5;
+    --silver: #8c9ab0;
+    --light-blue: #e8f0fb;
+    --white: #ffffff;
+    --gray: #f4f6fa;
+    --dark-gray: #4a5568;
+    --border: #e2e8f0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #eef2f7;
+    min-height: 100vh;
+    color: var(--dark-gray);
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0f1f42 0%, #1a2d5a 50%, #1e3a7a 100%);
+    padding: 36px 24px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(37,99,197,0.35) 0%, transparent 65%);
+  }
+  .header-inner { position: relative; z-index: 1; }
+  .header-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--silver);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .header-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .header-badge {
+    display: inline-block;
+    background: rgba(37,99,197,0.25);
+    border: 1px solid rgba(37,99,197,0.5);
+    border-radius: 20px;
+    padding: 7px 20px;
+    color: #93c5fd;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  /* TAB NAV */
+  .tab-nav {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 11px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 700;
+    color: var(--silver);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--navy); }
+  .tab-btn.active {
+    color: var(--navy);
+    border-bottom-color: var(--navy);
+  }
+
+  /* CONTENT */
+  .content { padding: 20px 16px; max-width: 720px; margin: 0 auto; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* DAY SELECTOR */
+  .day-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .day-btn {
+    flex: 1;
+    min-width: 75px;
+    padding: 10px 6px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: var(--white);
+    color: var(--dark-gray);
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  .day-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .day-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: white;
+  }
+
+  /* DAY HEADER */
+  .day-header {
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--navy) 0%, #2563c5 100%);
+  }
+  .day-header .day-label {
+    color: rgba(255,255,255,0.6);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .day-header .day-theme {
+    color: white;
+    font-size: 19px;
+    font-weight: 700;
+  }
+
+  /* TIME BLOCKS */
+  .blocks { display: flex; flex-direction: column; gap: 10px; }
+
+  .block {
+    background: var(--white);
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+  .block:not(.break-block) { cursor: pointer; }
+  .block:not(.break-block):hover { border-color: #93c5fd; }
+  .block.open { border-color: var(--blue); box-shadow: 0 4px 18px rgba(37,99,197,0.12); }
+  .break-block { background: #f0fdf4; }
+
+  .block-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+  .block-time {
+    min-width: 92px;
+    font-size: 10px;
+    color: var(--silver);
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  .block-info { flex: 1; }
+  .block-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 5px;
+  }
+  .block-tag {
+    display: inline-block;
+    font-size: 9px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .chevron {
+    color: var(--silver);
+    font-size: 18px;
+    transition: transform 0.25s;
+    user-select: none;
+  }
+  .block.open .chevron { transform: rotate(180deg); }
+
+  .block-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid #f1f5f9;
+  }
+  .block.open .block-body { display: block; }
+
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .task-item:last-child { border-bottom: none; }
+  .task-num {
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .task-text {
+    font-size: 13px;
+    color: var(--dark-gray);
+    line-height: 1.55;
+  }
+
+  /* TAG COLORS — Google Calendar Color System
+     Each category gets a distinct GCal color. Consistent across every day of the week. */
+  /* Graphite = Mindset / Morning Ritual / Focus */
+  .tag-mindset    { background: #f1f3f4; color: #3c4043; border-left: 4px solid #616161; }
+  /* Lavender = Strategy / Planning / Review */
+  .tag-strategy   { background: #e8eaf6; color: #283593; border-left: 4px solid #7986cb; }
+  /* Blueberry = LinkedIn / Outreach */
+  .tag-linkedin   { background: #e3e7f4; color: #1a237e; border-left: 4px solid #3f51b5; }
+  /* Peacock = Email / Cold Outreach */
+  .tag-email      { background: #e1f5fe; color: #01579b; border-left: 4px solid #039be5; }
+  /* Banana = Content Creation */
+  .tag-content    { background: #fef7d6; color: #7a5d00; border-left: 4px solid #f6bf26; }
+  /* Grape = Networking / Relationships */
+  .tag-networking { background: #f3e5f5; color: #6a1b9a; border-left: 4px solid #8e24aa; }
+  /* Tomato = Sales / High Priority */
+  .tag-sales      { background: #fde7e9; color: #b71c1c; border-left: 4px solid #d50000; }
+  /* Flamingo = Growth / Learning / Skill Building */
+  .tag-growth     { background: #fce8e6; color: #b03a33; border-left: 4px solid #e67c73; }
+  /* Tangerine = Admin / Follow-Ups */
+  .tag-admin      { background: #fff3e0; color: #bf360c; border-left: 4px solid #f4511e; }
+  /* Sage = Break / Lunch */
+  .tag-break      { background: #e7f5ea; color: #1b5e20; border-left: 4px solid #33b679; }
+  /* Basil = Revenue / Client Work */
+  .tag-revenue    { background: #e6f4ea; color: #0b8043; border-left: 4px solid #0b8043; }
+
+  /* NUMBER BADGE COLORS — match calendar */
+  .num-mindset    { background: #f1f3f4; color: #3c4043; }
+  .num-strategy   { background: #e8eaf6; color: #283593; }
+  .num-linkedin   { background: #e3e7f4; color: #1a237e; }
+  .num-email      { background: #e1f5fe; color: #01579b; }
+  .num-content    { background: #fef7d6; color: #7a5d00; }
+  .num-networking { background: #f3e5f5; color: #6a1b9a; }
+  .num-sales      { background: #fde7e9; color: #b71c1c; }
+  .num-growth     { background: #fce8e6; color: #b03a33; }
+  .num-admin      { background: #fff3e0; color: #bf360c; }
+  .num-break      { background: #e7f5ea; color: #1b5e20; }
+  .num-revenue    { background: #e6f4ea; color: #0b8043; }
+
+  /* INFO BOX */
+  .info-box {
+    margin-top: 20px;
+    background: var(--light-blue);
+    border-radius: 12px;
+    padding: 15px 18px;
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.6;
+    border-left: 4px solid var(--blue);
+  }
+
+  /* METRICS TAB */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--silver);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .stat-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid var(--border);
+  }
+  .stat-icon { font-size: 28px; margin-bottom: 8px; }
+  .stat-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  /* PIPELINE */
+  .pipeline-stage {
+    border-radius: 12px;
+    padding: 15px 18px;
+    margin-bottom: 10px;
+    border: 2px solid;
+  }
+  .pipeline-stage-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .pipeline-stage-desc {
+    font-size: 12px;
+    color: var(--dark-gray);
+    line-height: 1.55;
+  }
+
+  /* TRACKER BOX */
+  .tracker-box {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 22px;
+    margin-top: 20px;
+  }
+  .tracker-title {
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .tracker-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+  }
+  .tracker-item:last-child { border-bottom: none; }
+
+  /* TIPS TAB */
+  .tip-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 20px;
+    border: 2px solid var(--border);
+    margin-bottom: 12px;
+    transition: box-shadow 0.2s;
+  }
+  .tip-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .tip-icon { font-size: 28px; margin-bottom: 10px; }
+  .tip-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .tip-text { font-size: 13px; color: var(--dark-gray); line-height: 1.65; }
+
+  .tool-item {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 15px 18px;
+    margin-bottom: 10px;
+    border: 2px solid var(--border);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .tool-dot {
+    min-width: 8px; width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--blue);
+    margin-top: 6px;
+  }
+  .tool-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .tool-desc { font-size: 12px; color: var(--dark-gray); line-height: 1.55; }
+
+  /* CTA */
+  .cta-box {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 100%);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-top: 24px;
+  }
+  .cta-emoji { font-size: 36px; margin-bottom: 14px; }
+  .cta-title {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    margin-bottom: 12px;
+  }
+  .cta-text {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px;
+    line-height: 1.75;
+    margin-bottom: 18px;
+  }
+  .cta-contact {
+    color: #93c5fd;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .header h1 { font-size: 22px; }
+    .tab-btn { padding: 13px 10px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <img src="data:image/png;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAIUBAwDACIAAREBAhEB/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMAAAERAhEAPwD36iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBaKKKAEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAWiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooASlqrqF4un6bdXrqzpbxNKyr1IUEkD8q8Yk+Ptzk7PD8W09N10c49/lq4U5T+FXIlUjH4me40V4Qf2gL7PHh+3/G5b/wCJo/4aAv8Av4ftv/Alv/ia0+rVexPtodz3eivCf+GgL7/oX7f/AMCm/wDiaD+0Bff9C/b/APgS3/xNH1ar2D20O57tRXhH/DQF/wD9C/b/APgS3/xNH/DQN/8A9C9b/wDgS3/xNH1ar2D20O57vRXhSftA3QcGXw7F5YOW23ZzjvjK4zXt9tOLm2imVSokQOAe2QDg1nOnKHxKxUakZbMmoooqCwoorzbx/wDFGXwZrMWmw6ULp3hEpkebYBkkAAAEnoeaqMHN2juTKSirvY9Jorwn/hf98f8AmX7f/wACW/8AiaX/AIX9f/8AQAtv/Alv/ia1+rVexHt6fc91orwn/hf+of8AQv23/gS3/wATSf8AC/8AUO/h+2/8CW/+Jo+rVewe3p9z3eivCf8Ahf8Aff8AQv2//gS3/wATS/8AC/73/oXrf/wKb/4mj6tV7B7an3PdaK8K/wCGgbzP/Iuwf+BR/wDia734d+P28dQX7vp4s3tGQELLvDBgSOwIxj9amVCpFczWg1Ug3ZM7iiuS8TeNDoOoJZpZeexQOXZ9oGc4A4OelYjfE+5A40mL/v8An/4msjQ9IorzM/FG8zxpMH4zH/Ck/wCFoX3/AECrf/v83+FAHptFeZ/8LPvf+gVB/wB/j/hSf8LQvv8AoFW//f5v8KAuem0V5j/wtG+/6BVv/wB/m/woHxSve+kwf9/j/hTswuenUV5l/wALTu886RDj/r4P/wATU8fxRkP39IU/7tx/itFmFz0aiuHg+Jlg+PPsLqP12lWx+orXtfG2g3RAN75DHoJkK/qRj9aQHQ0VFBPDcxiSCVJEPRkYEH8RUtABRRRQAUUUUAFFFc94g8a+H/DK41PUYo5sZECfPIf+AjJ/E4FCTewm7HQ0V4rq3x8RWZNH0VnHaS7l2/8Ajq5/mK5K9+M/jG6Y+Vc2lop7Q24JH4tmuiOFqy6GUq8F1PpaivlST4leMpjlvEF0D/sBVH5ACmp8RvGCHI8Q3h+pUj9RV/UqnkR9agfV1FfMFv8AFzxrbf8AMVSUektujfyANa1l8dfEsDD7XZ6fcr3wjRn88kfpUvB1ENYiDPomivHNP+P+nuQupaJcw+rW8qyD8jtNdfpnxV8HapsVdXS2kb+C7UxY/Ejb+RrKVGpHdGqqRezO0oqK3uIbuBJreaOaJhlXjYMpHsRxUtZlhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUALRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAMdFkRkdQysCCCM5B9q5G/8Ahf4P1AMX0eKJ253QM0ZH0AOP0rsaKqM5R2diZRUtz50+IfwoPhexbV9LuJLjT1YCaOUAvFk4ByMArkgdARkde3mm32r678XWiX3g/WbZ8FXs5cZ7EKSD+eK+SMZUH15r08JUdRNS3RwYiCg1bYjop2KMV2WOa5HivVvAPwhTxBpUOsazcyw2s/zQwQ4DOufvEkHAOOABkjnIrywjg4r7B8O2wtPDWl2y4AitIk49kArkxVSVOK5d2dOHgpy1MLTvhd4P04q8ejRSyKQQ05aQ5HsTj9K7AAAAY4HpS0V5cpylrJnfGMY7IKKKKkoKxNa8J6F4idJNV0yC6dBtV3BDAegIwcVt0U02ndCaTVmeZax8EvDd7E7ac1xp85HylXMiA+6tk4+hFeE69od54e1q50q+VRPA3VfusCMhh7EEH9DzX2HXgPx0tEj8U6fdKMPPaFW99rHH6H9K7cLXk58snozlxFKKjzI8nxRin4pMV6djguNxWn4f0G78Sa5baVZBRLMxyzdEUDJY+wHP6Vn4r0/4G2ol8ZXc5H+ps2x9WZR/IGs6r5YOS6FwXNJI73Rvgv4X06JTfRy6jOANzzOVXPsq4/Umu30rRNM0O3MGmWMFpExyViQLuPqfX8a0KK8adWc/iZ6kacY7Ip3mlWGokG8s4ZyowDIgJA+tYt94F0O8jOy2NtIRw8LEY/A5H6V01FZlnheraTLpGpzWUx3GMjawGAykZB/L9c1UEXtXcePoF/tuCQdXtwD+DH/GuU8r2oEU/KpDF7Vd8selIYx6UxFWCxuLycQ2sDzSnkIiknHr9K1B4K8QOMjTXHsXUH+ddL8PEA1W9OOfJAz/AMCr0Si4zxGbwlr1sNz6XOR6phv0BJrOa2khkKSxvG46q6kEfga9/qnf6ZZanEYry2SVccEjkfQ9RRcLHhwT2p2w+ldT4j8LPozieAtJZscZPVD2B/of8nA8selAiO2muLKUS2s8kEn96NipP1x1/Guy0Xx5cRFYdVUSx9PPjXDD6gcH8MH2Ncj5ftS7PagD2q2uYby3Se3kWSJxlXU5BqavKvDeuSaJeAMWazkOJUHOP9oD1Hf1H4V6lHIk0ayRsGRgCrDoQehpFDqr3t7badZS3d3MkNvEpeSRzgKB1JNWO1fPPxZ8bPrmrtotlKf7Os3IkKniaUdSfUKeB75PpjSlSdSVkZ1aipxuyXxn8YtQ1SWSy8Ps9lZDKm46TS+4/uj6c+46V5dI7yyNJI7O7HLOxJJPqSeSaMUYr2KVCFNWR5s6spvUj6Gr+k6Jqmu3P2fS7Ce7kGMiNchfcnoB9SK1vBPhG48Y+IEsIyY7aMCS5mAzsTOOPcngD8egNfUOjaJp+gadHYabbJBBGOAvVj3JPUk+prOviFT03ZpSoupr0PCdP+B3iS6jD3d1ZWZPVC5kYf8AfIx+taT/AADvwvy67b7vQ27Y/nXutFcLxlRnV9WgfNeq/BjxXp6NJbpbX6DnEEmGx7KwH5AmuCvLK5sLl7a8tpbedDho5UKsPqDzX2hWD4m8I6R4ssTbalbAuARHOmBJEfUH+hyD3FaU8a72mtCJYZbxZ8i4waUV0Pi7wjf+D9aaxvBvjbLQXCjCyrnqPQjgEdj6ggnAxXoRakrrZnHJNOzPpL4KHPw7iHpcy4H45/rXoled/BUY+Hsfvcyn9RXolePiP4kj0qLvBBRRRWJqFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UUUAJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQBl+JDjwtqx/6c5j/AOOGvkFfuCvr7xIM+F9W/wCvOb/0A18hKPkH4V6OA+0cGN6BSGlor0jiEr7I0z/kFWf/AFxT/wBBFfG56GvsjTeNLtP+uKf+givOx+0Ttwe7LVFFFead4UUUUAFFFFABXhXx5/5Dej/9e0n/AKEK91rwr48/8hvR/wDr2k/9CFdGF/jIxxH8NnkdJilor2zyRvevWPgP/wAjJqf/AF6D/wBDFeU969V+BP8AyM+pj/p0H/oYrDEfwpGtH+Ij3yiiivDPXCiiigDgPHgzq1sP+mB/9CNcrsrq/HIzq9v/ANcP/ZjXM4oAhKUbKm20baZJ0ngEY1S894R/6FXoFcH4EGNTu/8AriP/AEKu8pMpBRRRQBDc20V5ayW86ho5FKsPY15HfWT2N/PauSWicrn1HY/iMH8a9irgfGdqE1lJgMebECT6kEj+WKAOU2UbKsbBSbPamSQhK7nwPqbSQSabI2TF88R/2SeR+B/nXG7PatbwxL9n8Q2x6ByYz7gg4/UCkM6L4g6+3h3wbfXkTbbh1EMJ7h24BH0GT+FfLJJOSTknua9y+O9yy6RpFqDhZJ3kI9dq4H/oRrwyvWwMEoOR52LleXKJRS0V22OQ+hfgnpEdl4Me/wBo86+nZmbvtU7VH4EMfxr0uvP/AIOX0V34AggTG+1mkicd8liwP5MK9Arw8S26srnr0LezVgooorA2CiiigDmvG3hW28XeHZ7GRQLlQZLWU/8ALOQdPwPQ+x+lfKssMkEskMyMkkbFXQ8FSDgg+4IIr7Or5u+LmhjSfG81xGmIb9BcLj+90YfmM/jXfgqrUuR7HHioacyPUPgwMfD2D3uJf/Qq9C71598Gf+SfQ+1zKP8Ax6vQe9c2I/is3o/w0FFFFYmoUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUALRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAGV4l48LaufSym/8AQDXyGp+QfQV9e+JOfC2re9lN/wCgGvkBT8o/CvRwH2jhxnQdmjNNzQTXonDYCeDX2Tp3/IMtP+uKf+givjQng/SvsvTedLtD6wp/6CK8/HvSJ24TdlqiiivNO8KKKKACiiigArwf48n/AIn+kD/p1kP/AI8K94rwX49f8h/SP+vV/wD0IVvhf4qMa/8ADZ5PmjNNozXtnlD816r8CT/xVGpf9eY/9DFeUZ5r1X4EH/iqtS/68x/6GKyxD/dv0NKP8RHv1FFFeEeuFFFFAHA+OW26xb+9v/7Ma5jzK6Lx6cazbf8AXv8A+zGuU30ySx5ho8w1X30b6AOx8CPu1S7HpCP/AEKu9rz34fnOrXg/6YD/ANCr0KkUFFFFABXG+OQFexfuQ4/ka7KuJ8fSAPYp3Ac/yFAHK+Z9KTfVfePWjfQSWd9XNJkI1ezIOD5yfzFZXme9aGhAza7YoOczKT9Acn+VMCl8e0PlaE+PlDTAn3IUj+RrxXNfRfxn0o3/AIHN0i5exmWU/wC6cqf5g/hXzjmvXwMk6dux52Ki+e4/NGaZmjNddzmsdz8MvGo8J660d2xGm3mFmP8AzzYfdf6DJB9j7V9KxTRzxJLE6vG4DK6kEMD3HtXxj1rufBXxN1TwmVtZQb3TM8wM2GjHcoe30PH061wYrDOfvx3OyhX5PdlsfTVBrn/DfjLRPFUG/TbxWlAy9u/yyJ9VP8xke9dBXmNNOz3O9NNXQUUUUhhWRrXhnRvEPlf2rp8N0YgQhkByucZwQe+B+Va9FNNrVCaTVmU9P06z0qyjs7G3jt7aPhY41wBVyiihtt3YJJKyCiiikMKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAFooooASiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigDK8SnHhXVz6WU3/oBr4+U/IPwr7B8Tf8irrH/XlN/6Aa+PFPyD8K9DAv4jjxeth+aM03NGa9C5xWFJyK+y9L50mz/64J/6CK+MieDX0rpvxX8HQaVZxzattlSBFdfs8hwQoBGQuK4sbFtKx1YZqLdz0OiuH/4W94J/6DBH/bvJ/wDE0v8Awt3wT/0GP/JeT/4mvP8AZz7Hbzx7nb0Vw/8Awt3wR/0GD/4Dyf8AxNL/AMLd8E/9Bj/yXk/+Jo9nPsHPHudvRXD/APC3fBH/AEGf/JeT/wCJoPxe8ED/AJjB/wDAeT/4ml7OfYOePc7evBvj2f8Aif6R/wBer/8AoYr0A/F/wQP+Yux+ltL/APE15J8WfFWkeKtY0+fR7hp44YGRyY2TBLZHUAnit8NCSqptGVaScGkefZozSUV69zzbDs16t8B+fFWpf9eQ/wDQxXlGa9V+A3/I16l/15f+zrWOIf7tmlFe+j6BooorxT1QooooA84+ITbdZtfe3P8A6Ea5Df711fxHONatP+vc/wDoRrjd3vQIn3+9Lv8AeoN3vRupiO2+HRzq177QD/0KvRq81+Gxzq99/wBe6/8AoVelUmUgooooAK818fXgfXY4FP8AqYQCPQkk/wAsV6Hd3UNjaS3Vw4SKJSzsewFeHajqT6lqdxeyZDTOWxnoOw/AYFAD/N96XzfeqYk96XzPegkt+YPWuo8CWzXOum4xlLeMkn3bgD8s/lXGByxAGSScAAZJNeweEtFOjaMiSri5mPmS+oJ6L+A/XNNjRqajYwanptzY3C7obiNonHsQQf518ia5pNzoGuXmlXakS20hQnGAw6hh7EEEfWvsavN/in8P/wDhKLAanpyf8Ta1QgKOPPTrt+o5wfcjvx0YWt7OVnszCvT51ddD5xzRmldGikZJFZXUkMrAggg4IIPQj0ptevzHnWHUZptFFwsTQXM1rOk9vM8M0ZykkbFWU+oI5Fem+GPjXq2mBbfW4f7StxwJQQsyj37N+OD715Zmis6lKFT4kXCcofCfWXhzx34f8UoF0+/X7RjJtpvkkH4Hr9RkV0tfFSStG6vGzK6nKspwQfUEcivRvCvxi1zRSlvqedTsxgfvGxKo9m7/AEOfqK4KuCa1hqdkMSnpI+j6DXOeGfG+h+LIc6beKZwMvbSfLKn1Hce4yPeujrjacXZo6U09UFFFFIYUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UUUAJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQBk+KOPCes/8AXjN/6A1fHan5B+FfYviUZ8LauPWym/8AQDXxyD8g/Cu7A7s5MUthc0ZpuaM16ByWHUpORUZJwa+qdN+HfhKbSrOSXQLJpHgRmJTqdoJ71jVrKmtUaQpOex8sE80ma+sv+FbeDR/zL1j/AN8f/Xp3/CuPB3/Qu2P/AH7rH67DszX6tI+S80Zr6z/4Vx4O/wChesf++KP+FceD/wDoXrH/AL9//Xo+uw7MPq0j5M49aWvrL/hXHg7/AKF2w/790v8Awrnwf/0L1h/37pfXYdmH1aR8mE0A19Yn4b+Dj18PWP4R4/rXjXxl8PaT4e1XS4tKsYbRJYHZxGCAxDAAnOexq6eKjOSirkyoOMbs80zQDTc0ZrqMLD69X+Ahz4r1P/ryH/oYrybNes/APnxVqftZD/0MVjiP4bNKS95H0FRRRXjnpBRRRQB5j8SzjWbP3tz/AOhGuK312nxN41iyP/TA/wDoVcNn3oETbqQvUO6jf70xHd/DI51i+/691/8AQq9Oryz4XtnXL4f9Ow/9CrqfFfjJfDNxBB9ia4eVC+fM2gAHHocmkM6qoLq7t7G2e4upkhhQfM7nAFeV3fxS1SYEWtpb2+ehJMhH8h+lcpqOs6hq8okv7uScg5UMflX6AcD8qdgudN4v8YtrsgtLMMlhG2STwZSO5HYDsPxPYDlQ9QBqXfjGSBmkIn30BzWppPhfWdYZfs1m6xE/66YFEA9cnk/gDXpHh7wLYaMUnuT9rvByHcYVD/sj+p5ptgZHgnwhKskeq6nEVxhreFhznszDt7D8fSvRKKKRQUUUUAedePvhbZeKg+oaeUs9Xxy+P3c/oHA6H0YfjnjHz5rGi6joGoPY6paSW069mHDD1Ujgj3Br7IrM1nQdM8Q2LWeqWcdxCeQGHKn1U9QfcV00cTKGktUc9Sgpao+OKXNeveLPgheWhe68NzG7h5P2WUgSL/utwG/HB+teT3lndWFy9teW8lvOhw0cqlWB9wa9KFWM/hZxypyi9SHNGabRVkC5pc0zNGaLjsWLe6ntLiO4tppIZozuSSNirKfUEcivafAfxlMrxaZ4oZVY4WO/AwCfSQdB/vDj1HevD80ZrKrSjUWpcJyhsfbCOsiK6MGVgCCDkEGn189/Cj4jyaVeQ6BrE5bT5iFtpXb/AI92PRSf7pPHsfYnH0JXlVabpysz0ITU0FFFFZlhRRRQAUUUUAFFFFABRTUdZFDIwKkZBBzkU6gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBaKKKAEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAyvE/HhTVz6WUx/wDHGr42U/KPoK+yfE4z4U1j3spv/QGr4zU/IPoK7cHuzlxC2H5ozTc0ZruucthSeDX2npP/ACCLL/rgn/oIr4pY/Kfoa+1tK/5BFl/1wj/9BFcWM2R04fcuUUUVwnWFFFFABRRRQAV4F+0Af+J7ow/6dpP/AEIV77XgX7QPGuaL/wBe0n/oQrbD/wAVGdb4GePZozSUV61zz7Dh1r1r4An/AIqrVB/05D/0MV5JmvWvgD/yNWqf9eQ/9DFY13+7ZdJe+j6EoooryT0QooooA8t+KJxq9j/17t/6FXBl/eu3+KrY1iwH/Tuf/Qq4DfQBPv8Aek3e9Rb6N1Mk9A+FZzrV/wD9e6/+hV6PqOkWGrRCO/tIrhRnG9ckfQ9RXmvwoOda1D/r2X/0KvWKRRxtz8MvD07FohdW+e0U2QPwYGqn/CqdJzn7ffY9AU/+JrvaKAOOt/hp4fhYF1uZ8dRJMQD/AN8gVuWXhvRtOObTTbeNv72zLfmcmtWigAAA6UUUUAFFFFABRRRQAUUUUAFZGt+GdH8R25g1XT4blegZlw6/RhyPwNa9FNNp3Qmk9zwrxR8CZ4g9z4avPOXGfslywDfRX6H6ED615DqGn3ml3j2l/ay21wn3o5VKn64PUe44NfadY2veGNI8TWRtdWsknTHyuRh4z6qw5FdVLFyWktUYToJ6xPjujNehePfhTqPhQSahYM99pIOWcD95CP8AaA6j/aH4gV53mu6E4zV4s5ZQcdxc0uabRmquTYcfevp/4TeLG8TeEUjuZN99YEQTE9WX+Bj9QME9yCa+Xs816b8DdVay8cyWJb93fWzKRnjcvzA/luH41hiIKUG+prRlyyPpKiiivLO8KKKKACiiud8VeM9G8IWP2jVLgCRgfLgTmSQ+gH9TxQld2QebNy4uIbS2kuLiVIYY1LPJIwVVA7knpXMWGpXXjGTzrVJbXw+p4mYFZb7/AHQeVi9+rdsDk85pWka58RLuLV/FETWOgowktNGBOZvR5vUdwD19AOvpqoqIFUBVAwABjFaNKG+5F3IVVVECqAFAwABjFOoorMsKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAWiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAMnxQceE9ZPpYzn/wAcavjJT8o+gr7O8TDPhXWB62Uw/wDHDXxgv3R9BXZg+pzV+g7NFNpc13HPYRj8p+hr7Z0r/kEWX/XBP/QRXxKx+U/jX2zpX/IHsv8Argn/AKCK48XsjooLUuUUUVwnSFFFFABRRRQAV4B+0Gca9oo/6dpP/QhXv9fP37Qn/If0X/r1k/8AQhW1D+IiKnws8fzRmm5pQa9Q4LDs165+z/8A8jVqn/XkP/QxXkWa9c/Z/wD+Rp1X/ryH/oYrKt/DZdNe8j6FoooryjvCiiigDyT4snGt2A/6dj/6Ea8+3V33xdONc0//AK9j/wChGvO93vQIn3Ubveod3vS7vemI9G+EpzrWo/8AXuv/AKFXrVeQ/CE51vUR/wBOy/8AoVevUigooooAKKKKACiiigAooooA84+LPjfUvB+n6euleStzdyODJIm7aqgZwOmSSOvpWb8IvH+reK73UrLWbiKWWKNZYSsYQ4JIYYHUA7fzrA/aEmBv9ChzyIpWx9So/pXn/wAOvEg8MeNrC+lbbauxguDngRtwSfocH8K7adKMqN7anPObVTyPriikDBlDAggjIIpa4joCiiigAooooAY6K6FWUMpBBBGQc182fF3wFH4X1VNU06PZpd6xBjUcQy9do9FI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3Xc1i29woooqCgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBaKKKAEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAWiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAornL7xvomnX01nczSrNE21gIiQDgHqPrTIvH3h6Vwpu3TPd4mAH44oA6aiore5gu4Fnt5UliYZV0YEH8RVTV9Zs9DsxdXzssRcICqljk5xwPpQBoUVyn/CxfDve5mH/bBv8K0tL8U6NrEgis75Gmxny2BVj9AQM/hQBs0UUySRIo2eR1RFGWZiAB7kmgB9FcxdePvD9q5T7U8xHBMMZYfn0P4Vb0rxbo2sS+Ta3Y849I5F2sfoD1/CgDcooqjquq2mjWf2u9cpCGC5CluT04FAF6iuY/4WB4dP/L3J/wB+W/wqxYeMdF1O+js7W5d5pMhVMTAHAJ6kY6CgDfoqtf30Gm2Ut5dMVhiGWYAnA+grnj8RPDgODdS/hC3+FAHVUVy8Hj7w/c3EcEVzKXkYKoMLAEk4Hb1rqKACisjVPEuk6O2y9u1WXGfKQFm/IdPxqnY+ONAvphCl4YnY4UTIVB/E8frQB0dFICCAR0PQiqeo6pY6VbeffXKQR9AWPJPoB1J+lAF2iuWj+IPh6SXyzcyoP77QsF/ln9K6O1u7e9gWe2mSaJhw6NkH8qAJqKp6nqdppNmbq8kMcIYLu2k8npwKTTNUtNXtPtVnJ5kW4rkqRyOvBoAu0UVkap4m0jRn2Xt6iSYz5ags35AEj8aANeiuXtviD4fuJNhuZIc8ZliIH5jOPxrpIpY54llhkSSNhlXQggj1BFAElFFYVn4t0a+1MafBdE3O5lCtGVBIznBPGeDQBu0UVjav4o0nQ7lINQuGjkdd6gRs2RkjsD3FAGzRSKwdQw5BAI/GloAKKwr3xdoun6i1hc3ey4VlVl2E4JAIyQPcVu9RkUAFFFYSeLtIk1r+yVnf7Z5hi2eU2NwzkZxjtQBu0UUUAFFFFABRWZquvabosYe+ukjLfdTks30A5/HpWTbfEHw/cTCI3EsWTw0sRCn8ecfjigDqaKZG6Sxq8bK6MMhlOQR7EVmaz4i07QfJ+3ysnnA7NqFs4xnoPcUAa1FcmfiP4cBwbmb/AL8N/hV7R/F2ka7eta2E0jyqhchoiowCAeSPcUAb1FVb+/t9MspLy6cpDGAWbBOBnHQfWsE/EHw4Dg3cn/flv8KAOoorG03xTourSiG0v42mPSNgVY/QEDP4Vs0AFFYVp4s0i81U6ZFO/wBrDMmxoyvK5yMkY7Gt2gAoqlqeq2ej2n2q9l8uHcFBwTyenA+ho0zVLTV7T7TZOzwlioYqV5HXqKALtFY+qeJ9K0a7S2vrkxyuoZRsJyCSOw9Qa2AcgEdCM0AFFGQBk8Cue1DxtoOnyNG955si8FYFL4PpkcZ/GgDoaK5ey8feH72QRG6e3c8Dz4yo/PkD8TXTI6yKHRgysMgg5BH1oAdRVe9vINPs5bu5YrDEu52AJwPpWAfH/h0dbx/+/Lf4UAdPRXNR+PPD8siIt2+5iFH7lhkk4HaukoAWisvVfEOl6Iqm/u1jZuVjALMR6gDnHv0rKtviB4fuJfLNzJEc4DSREA/jzj8cUAdTRTI5EmjWSN1dGGVZTkH3GKfQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UUUAJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFctq114ti1KVdMsbeW0GNjOQCeBnOWHfNAHU0Vwx1Dx+OmlWh/Ff8A4qk/tDx//wBAm0/76X/4qgDuqK4X+0PiB/0CbX81/wDiqb/aPxB/6BNr+a//ABVAHeUVwf8AaXxBH/MItPzX/wCKo/tP4g550i1/Nf8A4qgDvKK4Yaj4/wC+k2g/4Ev/AMVTxqHjzvpVp/30v/xVAHbUVzmiXXiaa+K6vYwQW+wkNGQTu4wOCfeujNAHjeoQQ3vxQltZ0Dwy3iq6kkZBAyOK7q6+H+gzwMkNs1vIRxIkjEg/Qkg153rl62nfEW6vVi8xoLoOEzjdgDjNb8nxG1i9iaGz0cxTOMK4DSEE+gwMmgCL4eXlzY+JbnSXctEwcMoPAdTjI9MgEflXRfEsZ8LL7XCfyNVfAnhW706eXVdSQxzyKVjiY5YAnJZvQn069c1c+JX/ACKo/wCvhP5GgDJ8EeGdG1bw6Lm+sUmm8513lmBwCMDgisfxv4ctfDt5aXems8KykkLuJKMuCCCee4/KoNB8Ua3o2kGCx00TWodnMxhdgCcEgkccYpsJ1f4g6yqyPGqQqC2CFWJSeSBnJJ/wzigD1fQ719Q0KxvJOJJoVZsepHNee+MdWutc8RroVmxMSSCPYDgPIepPsP6E16Za28dnaxW0I2xxIEUegAwK8r8PgR/E+QXHD/aJwM/3iDj9KAOs0/4e6LbW6i7ia7mx8zOxAz7AEYH1ya5/xX4Bg0+0fU9JaRBD80kJYkgDup6jHXFem1BfGMWFwZseWImL59MHP6UAc34E8Qya3pLxXTbru1IR2PV1I+Vj78EH3Ge9M+JH/IqH/run9a5f4Vlzrl8Vz5X2YZ9M7hj9M11HxJ/5FJj/ANN4/wCZo6iMrwV4Z0fVvDyXV7ZLLMZXUsWYZAPHAOK6my8KaLp95HdWlisU0eSrB2OMjB6n0rzbw6fGh0wf2GCbLzGAwYwN3Gfvc13nhQeKPOuP+EhAEe0eUAUPOTn7vtjrQMs+Nf8AkT9S/wCuY/8AQhXG+AfDula1p13LqFoJnjmCKSzDA2g44I9a7Lxr/wAifqX/AFzH/oQrzXwzZ+J7qCdtBnMcKyASDzQoLY4OCDnjFAj0mLwV4egmSaLTkWRGDKQ7cEHIPX1rcncxwSOvJVSQPU4zXLeGrPxVb6iW1q4Elt5ZAAlDfNkYOAB711tAzxTwfbWfiHxLMusSlmdWkCs5HmuTyM9eASce1d7dfDvQp3RoY5bfDAsEckMO4IOcZ9RWNr/w0aa8kvdFuEiZ2LmCTIAJ/usOnPqPxrKtfEfifwndx22rRyywE4CTHdkDrtcf4n6UAesQwx20CQxIEjjUKqjoAOgrynxi4vfHS2t9M0dohjj3dkU4JI/M8+3tXqGn30OpWEN5btuilUMv+B9wcg/SsDxR4Oh8QstzFN9nvEXaHIyrjsGHt2I/WgBW8A+G5bcLHaFSQMSpKxY/iSQfyrT0HQrXQLI29vlix3PI3Vj2z+FecPF4s8HDcHkNovdT5kXXuDyv5Cu68J+Jk8RWT74xFdQkCVAcgg9CPY4P0oAqfEY48KN/13j/AJmk+HJz4VH/AF8P/SnfEb/kU39pk/maZ8N/+RWP/Xw/8hQBP438QvoOjgW7Bbu5YxxNj7oAyW+oGAPciuX8KeCY9Ytf7V1aSV0mJaOMMcuM8szdeTnj8aT4rCT7bpzYPl+W4HpuyM/pivQdDeJ9B09ocCM28e0DoBtFAGFf/DzQrqArbwNZy4+WSNyefcEkEVyHhzU73wn4rbRr1ybZ5RG4z8oJxtcemcjPsfavXK8m+IISTxlbrCMyiKINjqWLHH44IoA9Yr57uhcHWb17YOJIZpJdydVCsTu/Dg5r6DQEIM9cDNeReDokl+IVwrgMrfaAynkEEkEEelAHc+DPE8fiPTB5pVb6ABZkHGfRgPQ/ociuJ+KxP/CQWX/XsP8A0I1BqlldeAPGEd9aBjYysWQdmQ/ejPuO34H1pfiNdwahqem3lu4eGWzDow7jcf1HQ0AevQf8e8X+4P5Co727isbKe6mIEcKF2PsBmpIP+PeL/cH8hXF/EvVha6KmnI2JLtstg9EUgn8zgfnQB5pNFeavFqettkrHKplPu5OAPpgfpXsvg/VhrHhm0uC2ZUXypfXcvB/MYP41geG7PSIvAjafPe2iy3sbPKGmUEMw4zzwQAPyrI+GepGz1i70mVhtnBZMHI3rwcfUc/hQB6pXkNiM/Fkn/p9k/k1evV5FY/8AJWW/6/ZP5NQB66KKBRQAUGiigDxWIxa58QHi1iZkied1bLY6ZCrnsDgCu/u/h74fuIisNs9s+OHjkJI+oJINUPFPw+j1e6kv9OmW3upDmSNwdjn1yOQf0Nc0moeL/BsqJdiRrXOAJD5kTewYcg+2R9KAPVdPsINMsYrO2TbFEuAPX3rgPiry+l/7sv8A7LXa6DrMOu6ZHewgqSSroTyrDqP6/Q1xfxVwJNK9xL/7LQBq6R4J8PXejWVzPp6tLLAjsTI3JIBJxmtvTPDOj6Ncm40+yWGUqVLBmOQSDjkn0FcJY6X47ext3tLzbbNGpiBuAMLgYGMccY4rt/C9vrNvp0ia3KJbkykqQ4bC4GBkAd80AReODjwfqHuq/wDoQrk/Anh7SdZ0u5lv7RZ3SbYpLEEDaDjgjua6zxwP+KO1D/dX/wBCFedeG/EOs6PaTxaZp4uomfe7eU7bTgDGV4HAHWgDS8c+FLDRLa31DTQ0AMojaPeSASCQwJOQRg9/Su78LX8up+GrG6nOZmjw59SCRn8cZry99Q1rx9qsVkzwoIwXCD5VUdCxBJJI/wA45r13StPi0rS7exhyUhQLk9Se5/E5NAHl/ju0m0Lxlb6vbDas5WZSOnmKQGH4jB/E16pZXcd9YwXURzHMgdT7EZrA8d6R/avhmZo1zPa/v0wOTj7w/EZ/ECs34dazHJ4dmtZpMGyJbJPSM5IP4HP6UAY/xJ1J73WbPRrfLGPBZR3dsAD8B/OvQ9J09NL0m2sk6RIFJ9T1J/E5rzTwfA3iPx5c6vMuYoGafnoGJIQfgAT+Fes0AeSfE848TWh/6d1/9CNesx8xIf8AZH8q8m+KI/4qS0P/AE7L/wChGvV4v9RH/uj+VAHm/wAQ/Elyb5NBsnZchfO2HBct0TPpggn6itTRPh1p9vbI+qBrm4YZaMMVRPYYwTj1J/CuWuQsfxb3Xf3ftqkFvQgbT9M4r2EUCON1T4caPdwt9hVrKcD5SrFlJ9wSePpir/hDQrzQdMaG8uzKzHIiU5SP6Hrz37V0dFAzE8Yf8ilqX/XE/wAxXE+AdB0zWbO9e/tRM0cqqpLEYBXOOCO9dt4v/wCRS1P/AK4n+YrzLwxZeJLuG4bQrjyY1cCUeaFycccEHPFAHpCeCfD0ciuunKGUgg+Y3BByO9dB0FcZ4d0/xbbaskmr3YltQrBlEwbnscYFdnQB4np4g8QeO5E1iYiOWV8gtjJBIVfYcYr0K6+H3h+4iKxWzWz44eJzkfUEkGszxP8ADxNTu5L/AEudbe5kJZ4nB2O3cgjkE9+CPpXOJq/i7wfNHFfCRrfOAsx8yNh6BhyD7Z/CgD1XTrCDS7CKztk2xRjA9z3P1NW6zNC1mDXtKjvYBtDfK6Hkow6g/wA/cEVp0AFFctq154ti1KVNNsLea0GNjsQCeBnOWHfPaqP2/wAeY40q2/Nf/iqAO3orhTqHj/PGk2v5r/8AFUv9oeP8f8gq0/Nf/iqAO5orhDqHxA7aTa/mv/xVJ/aPxB7aTa/mv/xVAHeUVwX9o/EP/oEWn/fS/wDxVKNS+IX/AECLT/vpf/iqAO8orhBqXxB76Ra/99L/APFVIuoePe+k2o/4Ev8A8VQB29FU9Le9l06F9RiWK7IPmIpGAc8YwT2x3q5QAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAC0UUUAJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUGiigDx2YA/F0A979f5CvYazP+Ed0j+0v7R+wQ/bN+/zsHdu9a1KACuQ+JAz4WH/Xwn8jXX1WvbC11K38i8gSaLIba4yMjoaAOb+HShvCKBgCDNIOfTNcXqNrP4F8Zx3VuCbR2LxgHhoyfmQ+47fga9YsrG1062FvaQJDCCSEUYAJ60zUNKsdURUvrWO4VDlQ4zg+1AEtpdQ31pFc2774ZVDKw7g157430G8stWXxBpytgEPKUGTG46Nj0OBn9etd/Y6fa6bb+RZwLDFuLbFzgE9fpVkgEEHoeooA4fTfiVpstsP7Rjlt5wMHYpZWPtjkfQ1h+JvHh1qA6VpFvNsnwjMV+eQE/dVRk4Pc9a7e78G+H72UyS6ZDvbklMrn8iBVvTvD+k6SS1hYQwORjeFy35nmgRleCPDjaBpLNcAC8uSGlA52gdFz7c/iTUPxIGfCb+00f8zXXVWvbC11K2NveQJNCSCVcZGR0NAzmfhsMeEk955P5iuvqtZWFrptsLezgSGEEkKgwAT1qzQBz3jk48Gaif8ApmP/AEIVwvgjxZpnh+xuob7zt8sodfLj3cBQPX2r1S7tLe/tXtrqJZYZBhkYZBGayD4K8Nk5OkW5P0P+NAFGD4iaDcTRxRtc7pGCqDCQMk4FdPPMIIHmKuwRSxVFJY47AdzWNH4M8PQyrJHpcCujBlIzwRyD1reoA4Oy+JliZZY9QtJrfDnayDcMZ43DqDWH428YWGvWcFhp0ckhEocyMhHOCAFHUk5r0K/8N6PqkhkvNOgkkPV9uGP1IwTTdP8AC+i6XKJrPToY5R0kILMPoTnH4UCGeEtPm0zwxZW1yCswUs6n+EsScfhnFYWseP8A+x/ET2M2ny/ZUGGcjDsf7yg8Ff513FU7/TLHU4hHfWkNwo6CRQSPoe34UDOT1X4g6HLpM8cHmzyyxlBG0ZXBII5J4x9M1U+Gen3CLeX7oVhlVY48jG7BJJHt2ro4fBPh2CbzV0yLcOQGJYD8CcVvIixoFRQqgYAAwB+FAHKfEjjwk3/XeP8Amab8Njnwt/28P/IV0t9p9pqdsbe8gSeEkNtccZHSix0600y38izgSGLcW2oMDJ60AZHi/wAPf8JDozRRELdRN5kDE4BPdSewI4+uDXEeHPGNx4ZDaTq9rN5UTEAAYeInkjB6jPIx68ZFesVn6ho2m6qoF9ZQzkDALLyPoeooA5i++Jujw2xa0Se4mI+VChQA+5Pb6A1heEtKvvEniI6/fqRAknmBiMCRh0Cg9hx+QFdpb+CfDlvKJE0uIsOfnJYD8CSK3kVY1CqoVQMAAY/SgBa8k8FH/i40/wBbj+deuVmWvh7SbG+a9tbGKK5OcyKDk55PfvQA3xBokGv6RNYz4BbmOTGSjjoR/X1BNeF31tdWN09jeBlkt2KlSSQOc5Hsevvmvomsy+8P6Tqc/n3unwTy4273XJwOgzQBet/+PWH/AHF/kK8k1hn8YeP/ALHE58gP5CsOdqLksw/HP6V69sXy9mPlxjHtWZYeHdI0y5NzZWEUMxBUuoOcHqOT7UAcsfhVp3bUrsf8BT/CuW1vSJPBfiOzntpXkjXbMjMACSDhlOOP/wBdez1S1DSdP1VUW+tI7gISVDjOCetAFi3mS5t4riM5jkUOp9QRkfzrxx9Qg0r4kXF9c7vKivJC20ZOORwPxr2K2tobO2jt7eMRwxjaqjoB6Csq48JaBd3Ek9xpcEksjFncg5YnqTzQBlD4leHz/FdD/tif8a6TTNRg1bT4r22LGGUEruXB4JHI/Cs3/hCvDY/5hFv+R/xrWs7O3sLVLa1iWKFMhUXoO9AFikJwM+nPFLRQBw3/AAsi1g1W5tr2xnhgjbaj4+fjqWU4xk9MVneLPHWlalok2n2SyTPNgFnjKqgBBzzyTxXc6joemarzfWMM7AYDMvzD8RzVK08G+H7KYTRaXD5gOQXy2D7AkigDO+Henz2fh95Z1ZDcymREIxhcAA498ZrE+K3+s0s+gl/mtelYAGBwKoajo2nat5f2+0juPLzs3jO3OM4/IUAcnpXxA0K00mztpWuRJFCqNiEkZAAPOfat7SPFula3dm1spJTKFL4eMrwMdz9RR/whnhz/AKBFt+R/xq1Y+HtJ0y4+0WVjFBLtK7kBBwccfoKAKPjg48Hah/ur/wChCsX4XD/iS3uf+fn/ANlFdpd2dvfWz291EssL8MjDg4OaisNMstLiaKytkgR23MEGATjGf0oA8q8Wabc+EfF0Wr2HywTSGWMjoG/iQ+xyfwPtXqekapBrOmQX1sfkkXJHdT3B9wakvtOs9Tt/IvreOeIMGCuMgEdD9abp+l2OlRtHY2yQIx3MqcAn1xQBbZQylWAIIwQe9eF6zFc+Gdb1SwgYpFMpjGf4omIIx+WM+xr3WszUPD2k6rcLPf2EM8qrtDOMkDOcfqaAMX4eaUdO8NJNIuJrxvObPXbjCj8hn8a62mRxrFGsaAKigKoHQDoAKfQB5J8UTjxHaD/p2H/oRr1iH/Ux/wC6P5Vn6h4e0nVp1nv7CG4lVdqs4yQM5x+daQAUADgAYAoA4H4geFZr9k1fTkLXMahZY0+8yjkMPUj09PpVfQ/iSkdusGswy+ag2maMZLY/vKcEH1x+Qr0esq/8NaNqbmS806CWQ9X24Y/UjBNAHK6r8T7KO2ZdMgllnIIVpl2qp9SM5P04+taXgXUdc1HTXl1WPMIP7iZxteQd8jHIHY8Z9+taNp4O8P2Uolh0uDzFOQzguQfxJrbAAAA6DoBQBieMjjwhqZ/6Yn+Yrz/wP4r03w/aXcV8Zt0sisvlx7uAMHPPrXq1zawXttJbXMSywyDDIwyCPesc+CvDbHJ0e2J+h/xoAz0+I/h+R1UPc5YgDMJ6k4rrC2ELYJGM4A5P4VhL4K8OI4ZdJgBBBBGeCPxrfwABjoKAOBj+JlrHqdzb31hPDAjlUcD5xjruU4I59OlZ/jDxvpWraJJp9ikkzysp3uhUJgg5GeSeMfjXeajoGlasd19YQTuBgMy/N+Y5qrZ+ENAsJRLBpcAkU5DMCxH0yTQBm/DvTrjT/Dhe4Rka4lMqowwQuAASO2cZ+mK66iigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAFooooASiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBaKKKAEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAWiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Z" style="height:90px; margin-bottom:14px; display:block; margin-left:auto; margin-right:auto;" alt="Hebert Professional Services Logo">
+    <div class="header-eyebrow">Hebert Professional Services</div>
+    <h1>HPS Business Growth Playbook</h1>
+    <div class="header-sub">Your Daily & Weekly Revenue-Building Schedule</div>
+    <div class="header-badge">📍 Simple Financial Systems &bull; Clear Reporting &bull; Time-Saving Automation</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('schedule', this)">📅 Schedule</button>
+  <button class="tab-btn" onclick="switchTab('metrics', this)">📊 Weekly Metrics</button>
+  <button class="tab-btn" onclick="switchTab('tips', this)">💡 Pro Tips</button>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- ===== SCHEDULE TAB ===== -->
+  <div id="tab-schedule" class="tab-panel active">
+
+    <div class="day-selector">
+      <button class="day-btn active" onclick="switchDay('monday', this)">MON</button>
+      <button class="day-btn" onclick="switchDay('tuesday', this)">TUE</button>
+      <button class="day-btn" onclick="switchDay('wednesday', this)">WED</button>
+      <button class="day-btn" onclick="switchDay('thursday', this)">THU</button>
+      <button class="day-btn" onclick="switchDay('friday', this)">FRI</button>
+    </div>
+
+    <div id="day-monday" class="day-panel">
+      <div class="day-header" style="background: linear-gradient(135deg, #1a2d5a 0%, #2563c5 100%);">
+        <div class="day-label">Monday</div>
+        <div class="day-theme">🎯 STRATEGY & OUTREACH</div>
+      </div>
+      <div class="blocks">
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header">
+            <div class="block-time">8:00–8:30 AM</div>
+            <div class="block-info">
+              <div class="block-title">Morning Ritual</div>
+              <span class="block-tag tag-mindset">Mindset</span>
+            </div>
+            <div class="chevron">⌄</div>
+          </div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-mindset">1</div><div class="task-text">Review your weekly goals</div></div>
+            <div class="task-item"><div class="task-num num-mindset">2</div><div class="task-text">Check email & LinkedIn notifications</div></div>
+            <div class="task-item"><div class="task-num num-mindset">3</div><div class="task-text">Set 3 priorities for the day — write them down</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header">
+            <div class="block-time">8:30–10:00 AM</div>
+            <div class="block-info">
+              <div class="block-title">Deep Work: Business Strategy</div>
+              <span class="block-tag tag-strategy">Strategy</span>
+            </div>
+            <div class="chevron">⌄</div>
+          </div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-strategy">1</div><div class="task-text">Review your HPS pipeline & leads tracker</div></div>
+            <div class="task-item"><div class="task-num num-strategy">2</div><div class="task-text">Plan this week's LinkedIn posts — batch 2-3 drafts</div></div>
+            <div class="task-item"><div class="task-num num-strategy">3</div><div class="task-text">Research 5 target local businesses to reach out to this week</div></div>
+            <div class="task-item"><div class="task-num num-strategy">4</div><div class="task-text">Update your services or pricing if needed</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header">
+            <div class="block-time">10:00–11:30 AM</div>
+            <div class="block-info">
+              <div class="block-title">LinkedIn Outreach (Warm)</div>
+              <span class="block-tag tag-linkedin">LinkedIn</span>
+            </div>
+            <div class="chevron">⌄</div>
+          </div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-linkedin">1</div><div class="task-text">Send 5–10 personalized connection requests to past contacts</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">2</div><div class="task-text">Message 2–3 people you already know — just check in, no pitch</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">3</div><div class="task-text">Comment on 5 posts from small business owners in your area</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">4</div><div class="task-text">Reply to ALL comments on your own posts</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header">
+            <div class="block-time">11:30 AM–12:00 PM</div>
+            <div class="block-info">
+              <div class="block-title">Email Outreach Block</div>
+              <span class="block-tag tag-email">Email</span>
+            </div>
+            <div class="chevron">⌄</div>
+          </div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-email">1</div><div class="task-text">Send 3–5 personalized cold emails to local business owners</div></div>
+            <div class="task-item"><div class="task-num num-email">2</div><div class="task-text">Subject line idea: "Quick question about your bookkeeping"</div></div>
+            <div class="task-item"><div class="task-num num-email">3</div><div class="task-text">Keep emails under 5 sentences — lead with a pain point, not your pitch</div></div>
+            <div class="task-item"><div class="task-num num-email">4</div><div class="task-text">Log every email in your lead tracker spreadsheet immediately</div></div>
+          </div>
+        </div>
+        <div class="block break-block">
+          <div class="block-header">
+            <div class="block-time">12:00–1:00 PM</div>
+            <div class="block-info">
+              <div class="block-title">☀️ Lunch Break — Step Away</div>
+              <span class="block-tag tag-break">Break</span>
+            </div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header">
+            <div class="block-time">1:00–2:30 PM</div>
+            <div class="block-info">
+              <div class="block-title">LinkedIn Content Creation</div>
+              <span class="block-tag tag-content">Content</span>
+            </div>
+            <div class="chevron">⌄</div>
+          </div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-content">1</div><div class="task-text">Write & schedule your Monday post from your 30-Day LinkedIn plan</div></div>
+            <div class="task-item"><div class="task-num num-content">2</div><div class="task-text">Create 1 image/carousel using Canva (free) if needed</div></div>
+            <div class="task-item"><div class="task-num num-content">3</div><div class="task-text">Add relevant hashtags: #SmallBusiness #Bookkeeping #FinancialSystems</div></div>
+            <div class="task-item"><div class="task-num num-content">4</div><div class="task-text">Engage on 5 more posts AFTER publishing yours — timing boosts visibility</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header">
+            <div class="block-time">2:30–4:00 PM</div>
+            <div class="block-info">
+              <div class="block-title">Service Delivery / Skill Building</div>
+              <span class="block-tag tag-growth">Growth</span>
+            </div>
+            <div class="chevron">⌄</div>
+          </div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-growth">1</div><div class="task-text">Work on any active client projects first</div></div>
+            <div class="task-item"><div class="task-num num-growth">2</div><div class="task-text">If no clients yet: build a sample dashboard or case study to show prospects</div></div>
+            <div class="task-item"><div class="task-num num-growth">3</div><div class="task-text">Watch 1 QuickBooks or financial systems tutorial on YouTube</div></div>
+            <div class="task-item"><div class="task-num num-growth">4</div><div class="task-text">Document your processes now — you'll need them when clients come</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header">
+            <div class="block-time">4:00–5:00 PM</div>
+            <div class="block-info">
+              <div class="block-title">Admin & Follow-Ups</div>
+              <span class="block-tag tag-admin">Admin</span>
+            </div>
+            <div class="chevron">⌄</div>
+          </div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-admin">1</div><div class="task-text">Follow up on any unanswered DMs or emails from last week</div></div>
+            <div class="task-item"><div class="task-num num-admin">2</div><div class="task-text">Update your lead tracker — move people to next pipeline stage</div></div>
+            <div class="task-item"><div class="task-num num-admin">3</div><div class="task-text">Review your calendar for the rest of the week</div></div>
+            <div class="task-item"><div class="task-num num-admin">4</div><div class="task-text">Send any pending invoices</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="day-tuesday" class="day-panel" style="display:none;">
+      <div class="day-header" style="background: linear-gradient(135deg, #1e4d8c 0%, #3b7dd8 100%);">
+        <div class="day-label">Tuesday</div>
+        <div class="day-theme">📣 CONTENT & NETWORKING</div>
+      </div>
+      <div class="blocks">
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">8:00–8:30 AM</div><div class="block-info"><div class="block-title">Morning Ritual</div><span class="block-tag tag-mindset">Mindset</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-mindset">1</div><div class="task-text">Review yesterday's outreach results — what got responses?</div></div>
+            <div class="task-item"><div class="task-num num-mindset">2</div><div class="task-text">Check LinkedIn for new connection requests & messages</div></div>
+            <div class="task-item"><div class="task-num num-mindset">3</div><div class="task-text">Set 3 priorities for today</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">8:30–10:00 AM</div><div class="block-info"><div class="block-title">Deep Work: Content Creation</div><span class="block-tag tag-content">Content</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-content">1</div><div class="task-text">Write 2–3 LinkedIn posts for later in the week (batch them!)</div></div>
+            <div class="task-item"><div class="task-num num-content">2</div><div class="task-text">Draft one longer 'value post' — a story, lesson, or mini case study</div></div>
+            <div class="task-item"><div class="task-num num-content">3</div><div class="task-text">Write a short email newsletter draft if you have a list started</div></div>
+            <div class="task-item"><div class="task-num num-content">4</div><div class="task-text">Repurpose an older post into a new format (list → story, etc.)</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">10:00–11:30 AM</div><div class="block-info"><div class="block-title">Networking Calls / Coffee Chats</div><span class="block-tag tag-networking">Network</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-networking">1</div><div class="task-text">Schedule 1–2 free 15-min 'discovery' calls with warm connections</div></div>
+            <div class="task-item"><div class="task-num num-networking">2</div><div class="task-text">Join a local Facebook group for small businesses — introduce yourself</div></div>
+            <div class="task-item"><div class="task-num num-networking">3</div><div class="task-text">Search LinkedIn for local CPAs, bookkeepers, business coaches — potential referral partners</div></div>
+            <div class="task-item"><div class="task-num num-networking">4</div><div class="task-text">Send a referral partnership message to 2 complementary service providers</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">11:30 AM–12:00 PM</div><div class="block-info"><div class="block-title">LinkedIn DM Follow-Up</div><span class="block-tag tag-linkedin">LinkedIn</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-linkedin">1</div><div class="task-text">Reply to all DMs using your Engagement Playbook scripts</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">2</div><div class="task-text">Move any 'Strong Lead' conversations toward booking a discovery call</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">3</div><div class="task-text">Re-engage anyone who went cold with a soft 1-line check-in</div></div>
+          </div>
+        </div>
+        <div class="block break-block">
+          <div class="block-header"><div class="block-time">12:00–1:00 PM</div><div class="block-info"><div class="block-title">☀️ Lunch — Rest. You're building something real.</div><span class="block-tag tag-break">Break</span></div></div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">1:00–2:30 PM</div><div class="block-info"><div class="block-title">Local Business Research</div><span class="block-tag tag-strategy">Strategy</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-strategy">1</div><div class="task-text">Search Google Maps for local small businesses (restaurants, salons, contractors, etc.)</div></div>
+            <div class="task-item"><div class="task-num num-strategy">2</div><div class="task-text">Find name + email from their website or Google Business page</div></div>
+            <div class="task-item"><div class="task-num num-strategy">3</div><div class="task-text">Add 10 new prospects to your outreach list</div></div>
+            <div class="task-item"><div class="task-num num-strategy">4</div><div class="task-text">Look them up on LinkedIn — check for mutual connections</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">2:30–4:00 PM</div><div class="block-info"><div class="block-title">Service Delivery / Skill Building</div><span class="block-tag tag-growth">Growth</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-growth">1</div><div class="task-text">Client work (always first priority)</div></div>
+            <div class="task-item"><div class="task-num num-growth">2</div><div class="task-text">Build a free template or tool you can offer as a lead magnet</div></div>
+            <div class="task-item"><div class="task-num num-growth">3</div><div class="task-text">Read 1 article on bookkeeping, QuickBooks, or small business finance</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">4:00–5:00 PM</div><div class="block-info"><div class="block-title">Admin & Follow-Ups</div><span class="block-tag tag-admin">Admin</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-admin">1</div><div class="task-text">Log all outreach activity in your tracker</div></div>
+            <div class="task-item"><div class="task-num num-admin">2</div><div class="task-text">Follow up on cold emails sent Monday (48-hour follow-up rule)</div></div>
+            <div class="task-item"><div class="task-num num-admin">3</div><div class="task-text">Clear inbox to zero</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="day-wednesday" class="day-panel" style="display:none;">
+      <div class="day-header" style="background: linear-gradient(135deg, #164e63 0%, #0ea5e9 100%);">
+        <div class="day-label">Wednesday</div>
+        <div class="day-theme">📞 CALLS & CONVERSIONS</div>
+      </div>
+      <div class="blocks">
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">8:00–8:30 AM</div><div class="block-info"><div class="block-title">Morning Ritual</div><span class="block-tag tag-mindset">Mindset</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-mindset">1</div><div class="task-text">Review your pipeline — who's close to a call or a close?</div></div>
+            <div class="task-item"><div class="task-num num-mindset">2</div><div class="task-text">Prep talking points for any discovery calls scheduled today</div></div>
+            <div class="task-item"><div class="task-num num-mindset">3</div><div class="task-text">Set 3 priorities</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">8:30–10:00 AM</div><div class="block-info"><div class="block-title">Discovery Calls</div><span class="block-tag tag-sales">Sales</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-sales">1</div><div class="task-text">Take any scheduled discovery calls (15–20 min each)</div></div>
+            <div class="task-item"><div class="task-num num-sales">2</div><div class="task-text">Framework: What's your current system? → What's the pain? → Here's how I help</div></div>
+            <div class="task-item"><div class="task-num num-sales">3</div><div class="task-text">Do NOT pitch immediately — listen first, lead with empathy</div></div>
+            <div class="task-item"><div class="task-num num-sales">4</div><div class="task-text">Send a follow-up summary email within 1 hour of the call</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">10:00–11:30 AM</div><div class="block-info"><div class="block-title">Cold Email Blitz</div><span class="block-tag tag-email">Email</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-email">1</div><div class="task-text">Send 5–10 personalized cold emails (research each business first!)</div></div>
+            <div class="task-item"><div class="task-num num-email">2</div><div class="task-text">Vary your angle: financial cleanup vs. reporting vs. automation</div></div>
+            <div class="task-item"><div class="task-num num-email">3</div><div class="task-text">Reference something specific: "I noticed you have 3 locations…"</div></div>
+            <div class="task-item"><div class="task-num num-email">4</div><div class="task-text">Track open rates if using Mailtrack or GMass (both free)</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">11:30 AM–12:00 PM</div><div class="block-info"><div class="block-title">LinkedIn Engagement</div><span class="block-tag tag-linkedin">LinkedIn</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-linkedin">1</div><div class="task-text">Publish your Wednesday post</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">2</div><div class="task-text">Spend 20 min commenting on 5–10 posts from target businesses</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">3</div><div class="task-text">Send 5 new connection requests with a personalized note</div></div>
+          </div>
+        </div>
+        <div class="block break-block">
+          <div class="block-header"><div class="block-time">12:00–1:00 PM</div><div class="block-info"><div class="block-title">☀️ Walk outside if you can. Fresh air = fresh thinking.</div><span class="block-tag tag-break">Break</span></div></div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">1:00–2:30 PM</div><div class="block-info"><div class="block-title">Proposal / Service Agreement Work</div><span class="block-tag tag-sales">Sales</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-sales">1</div><div class="task-text">Prepare a proposal for any hot leads from discovery calls</div></div>
+            <div class="task-item"><div class="task-num num-sales">2</div><div class="task-text">Customize your Service Agreement for any near-close prospects</div></div>
+            <div class="task-item"><div class="task-num num-sales">3</div><div class="task-text">Price the project based on value delivered, not just hours worked</div></div>
+            <div class="task-item"><div class="task-num num-sales">4</div><div class="task-text">Practice your close: "Ready to get started? Here's the next step."</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">2:30–4:00 PM</div><div class="block-info"><div class="block-title">Service Delivery / Deep Work</div><span class="block-tag tag-growth">Growth</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-growth">1</div><div class="task-text">Client work or case study building</div></div>
+            <div class="task-item"><div class="task-num num-growth">2</div><div class="task-text">Document a system or process you've built — makes great LinkedIn content</div></div>
+            <div class="task-item"><div class="task-num num-growth">3</div><div class="task-text">Create a simple before/after example to show prospects what you deliver</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">4:00–5:00 PM</div><div class="block-info"><div class="block-title">Admin & Follow-Ups</div><span class="block-tag tag-admin">Admin</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-admin">1</div><div class="task-text">Follow up on all open proposals (no reply after 48 hrs = follow up!)</div></div>
+            <div class="task-item"><div class="task-num num-admin">2</div><div class="task-text">Update lead tracker with call notes and next steps</div></div>
+            <div class="task-item"><div class="task-num num-admin">3</div><div class="task-text">Schedule next week's discovery calls while momentum is high</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="day-thursday" class="day-panel" style="display:none;">
+      <div class="day-header" style="background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%);">
+        <div class="day-label">Thursday</div>
+        <div class="day-theme">🔥 HIGH-VOLUME OUTREACH PUSH</div>
+      </div>
+      <div class="blocks">
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">8:00–8:30 AM</div><div class="block-info"><div class="block-title">Morning Ritual</div><span class="block-tag tag-mindset">Mindset</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-mindset">1</div><div class="task-text">Check what's working this week — what got the most responses?</div></div>
+            <div class="task-item"><div class="task-num num-mindset">2</div><div class="task-text">Double down on what's working today</div></div>
+            <div class="task-item"><div class="task-num num-mindset">3</div><div class="task-text">Set 3 priorities</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">8:30–10:30 AM</div><div class="block-info"><div class="block-title">HIGH VOLUME LinkedIn Outreach</div><span class="block-tag tag-linkedin">LinkedIn</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-linkedin">1</div><div class="task-text">Send 10–15 LinkedIn connection requests to local business owners</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">2</div><div class="task-text">Message 5 existing connections casually about your services — no hard pitch</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">3</div><div class="task-text">Post a client result or case study (real or hypothetical with disclaimer)</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">4</div><div class="task-text">Engage on 10+ posts — be the most helpful person in every comment section</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">10:30 AM–12:00 PM</div><div class="block-info"><div class="block-title">Email Campaign Push</div><span class="block-tag tag-email">Email</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-email">1</div><div class="task-text">Send 5–10 more cold emails — this is your volume day</div></div>
+            <div class="task-item"><div class="task-num num-email">2</div><div class="task-text">Follow up on ALL emails sent Tuesday with a 1-line bump</div></div>
+            <div class="task-item"><div class="task-num num-email">3</div><div class="task-text">Try a new subject line or angle to test what resonates</div></div>
+            <div class="task-item"><div class="task-num num-email">4</div><div class="task-text">Use Hunter.io (free) to find business owner emails from their domain</div></div>
+          </div>
+        </div>
+        <div class="block break-block">
+          <div class="block-header"><div class="block-time">12:00–1:00 PM</div><div class="block-info"><div class="block-title">☀️ You've earned it. Real break. Step outside.</div><span class="block-tag tag-break">Break</span></div></div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">1:00–2:30 PM</div><div class="block-info"><div class="block-title">Referral & Partnership Building</div><span class="block-tag tag-networking">Network</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-networking">1</div><div class="task-text">Reach out to a local CPA and ask to be their bookkeeping referral partner</div></div>
+            <div class="task-item"><div class="task-num num-networking">2</div><div class="task-text">Contact a business attorney, financial advisor, or banker with the same ask</div></div>
+            <div class="task-item"><div class="task-num num-networking">3</div><div class="task-text">Ask any past employers or colleagues for a LinkedIn recommendation</div></div>
+            <div class="task-item"><div class="task-num num-networking">4</div><div class="task-text">Check in with 2 people who said 'not right now' — timing may have changed</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">2:30–4:00 PM</div><div class="block-info"><div class="block-title">Content & Brand Building</div><span class="block-tag tag-content">Content</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-content">1</div><div class="task-text">Record a short Loom video explaining a common financial mistake small businesses make</div></div>
+            <div class="task-item"><div class="task-num num-content">2</div><div class="task-text">Post it to LinkedIn as a native video — highest organic reach!</div></div>
+            <div class="task-item"><div class="task-num num-content">3</div><div class="task-text">Write tomorrow's Friday reflection post while thoughts are fresh</div></div>
+            <div class="task-item"><div class="task-num num-content">4</div><div class="task-text">Review your LinkedIn headline — is it converting? Update if needed.</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">4:00–5:00 PM</div><div class="block-info"><div class="block-title">Admin & Follow-Ups</div><span class="block-tag tag-admin">Admin</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-admin">1</div><div class="task-text">Log all outreach in your tracker</div></div>
+            <div class="task-item"><div class="task-num num-admin">2</div><div class="task-text">Review your weekly numbers: emails sent, responses, calls booked</div></div>
+            <div class="task-item"><div class="task-num num-admin">3</div><div class="task-text">Prep any materials for tomorrow's calls or meetings</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="day-friday" class="day-panel" style="display:none;">
+      <div class="day-header" style="background: linear-gradient(135deg, #166534 0%, #16a34a 100%);">
+        <div class="day-label">Friday</div>
+        <div class="day-theme">📊 REVIEW & RESET</div>
+      </div>
+      <div class="blocks">
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">8:00–8:30 AM</div><div class="block-info"><div class="block-title">Morning Ritual</div><span class="block-tag tag-mindset">Mindset</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-mindset">1</div><div class="task-text">List 3 wins from this week — no matter how small, they count</div></div>
+            <div class="task-item"><div class="task-num num-mindset">2</div><div class="task-text">Identify 1 thing that didn't work — commit to adjusting it next week</div></div>
+            <div class="task-item"><div class="task-num num-mindset">3</div><div class="task-text">Set 3 priorities for today</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">8:30–10:00 AM</div><div class="block-info"><div class="block-title">Weekly Review & Planning</div><span class="block-tag tag-strategy">Strategy</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-strategy">1</div><div class="task-text">Count your numbers: emails sent, LinkedIn messages, calls, responses, closes</div></div>
+            <div class="task-item"><div class="task-num num-strategy">2</div><div class="task-text">Update your lead tracker — who's at each pipeline stage?</div></div>
+            <div class="task-item"><div class="task-num num-strategy">3</div><div class="task-text">Plan next week's outreach targets — identify 10 new businesses to contact</div></div>
+            <div class="task-item"><div class="task-num num-strategy">4</div><div class="task-text">Batch-write 3 LinkedIn posts for next week while in planning mode</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">10:00–11:30 AM</div><div class="block-info"><div class="block-title">Admin Hour</div><span class="block-tag tag-admin">Admin</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-admin">1</div><div class="task-text">Send any outstanding invoices</div></div>
+            <div class="task-item"><div class="task-num num-admin">2</div><div class="task-text">File receipts and track business expenses</div></div>
+            <div class="task-item"><div class="task-num num-admin">3</div><div class="task-text">Respond to all emails — inbox zero before the weekend</div></div>
+            <div class="task-item"><div class="task-num num-admin">4</div><div class="task-text">Update your Service Agreement or proposal templates if anything came up this week</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">11:30 AM–12:00 PM</div><div class="block-info"><div class="block-title">Friday LinkedIn Post</div><span class="block-tag tag-linkedin">LinkedIn</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-linkedin">1</div><div class="task-text">Post your weekly reflection, lesson learned, or behind-the-scenes</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">2</div><div class="task-text">Engage on 5–10 posts to close the week strong</div></div>
+            <div class="task-item"><div class="task-num num-linkedin">3</div><div class="task-text">Thank anyone who engaged heavily this week — build those relationships</div></div>
+          </div>
+        </div>
+        <div class="block break-block">
+          <div class="block-header"><div class="block-time">12:00–1:00 PM</div><div class="block-info"><div class="block-title">☀️ Long lunch. Week = almost done. You earned it.</div><span class="block-tag tag-break">Break</span></div></div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">1:00–2:30 PM</div><div class="block-info"><div class="block-title">Skill & Business Development</div><span class="block-tag tag-growth">Growth</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-growth">1</div><div class="task-text">Watch a tutorial: QuickBooks, Excel, Google Sheets, or business development</div></div>
+            <div class="task-item"><div class="task-num num-growth">2</div><div class="task-text">Read 1 article on bookkeeping trends or small business pain points</div></div>
+            <div class="task-item"><div class="task-num num-growth">3</div><div class="task-text">Research a new service you could offer (payroll reporting, budgeting templates, etc.)</div></div>
+            <div class="task-item"><div class="task-num num-growth">4</div><div class="task-text">Work on a lead magnet: a free financial checklist or template to give away</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">2:30–4:00 PM</div><div class="block-info"><div class="block-title">Relationship Nurturing</div><span class="block-tag tag-networking">Network</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-networking">1</div><div class="task-text">Send 5 genuine check-in messages to warm connections</div></div>
+            <div class="task-item"><div class="task-num num-networking">2</div><div class="task-text">Comment on posts from people in your referral network</div></div>
+            <div class="task-item"><div class="task-num num-networking">3</div><div class="task-text">Ask 1 happy client for a LinkedIn recommendation</div></div>
+            <div class="task-item"><div class="task-num num-networking">4</div><div class="task-text">Follow up with any 'not right now' contacts from earlier in the month</div></div>
+          </div>
+        </div>
+        <div class="block" onclick="toggleBlock(this)">
+          <div class="block-header"><div class="block-time">4:00–5:00 PM</div><div class="block-info"><div class="block-title">Weekend Prep & Shutdown Ritual</div><span class="block-tag tag-admin">Admin</span></div><div class="chevron">⌄</div></div>
+          <div class="block-body">
+            <div class="task-item"><div class="task-num num-admin">1</div><div class="task-text">Write your top 3 priorities for Monday morning</div></div>
+            <div class="task-item"><div class="task-num num-admin">2</div><div class="task-text">Close all browser tabs and apps</div></div>
+            <div class="task-item"><div class="task-num num-admin">3</div><div class="task-text">Log off. Protect your energy. You're building a marathon, not a sprint.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      💡 <strong>Tap any block</strong> to expand the task list. Consistency beats intensity — showing up every day is your real competitive advantage.
+    </div>
+  </div>
+
+  <!-- ===== METRICS TAB ===== -->
+  <div id="tab-metrics" class="tab-panel">
+    <h2 class="section-title">Weekly Activity Targets</h2>
+    <p class="section-sub">These are your minimum weekly standards. Track them every Friday without fail.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-icon">📝</div><div class="stat-value">5/week</div><div class="stat-label">LinkedIn Posts</div></div>
+      <div class="stat-card"><div class="stat-icon">🤝</div><div class="stat-value">50–75</div><div class="stat-label">Connection Requests</div></div>
+      <div class="stat-card"><div class="stat-icon">📧</div><div class="stat-value">25–40</div><div class="stat-label">Cold Emails Sent</div></div>
+      <div class="stat-card"><div class="stat-icon">📞</div><div class="stat-value">3–5</div><div class="stat-label">Discovery Calls Goal</div></div>
+      <div class="stat-card"><div class="stat-icon">🔄</div><div class="stat-value">Daily</div><div class="stat-label">Follow-Ups</div></div>
+      <div class="stat-card"><div class="stat-icon">🔍</div><div class="stat-value">20+</div><div class="stat-label">New Leads Researched</div></div>
+    </div>
+
+    <h2 class="section-title" style="margin-bottom:16px;">Your Lead Pipeline</h2>
+
+    <div class="pipeline-stage" style="background:#e0f2fe; border-color:#0ea5e9;">
+      <div class="pipeline-stage-title">1. Identified</div>
+      <div class="pipeline-stage-desc">Found on LinkedIn, Google Maps, or referral. Not contacted yet.</div>
+    </div>
+    <div class="pipeline-stage" style="background:#fef3c7; border-color:#d97706;">
+      <div class="pipeline-stage-title">2. Contacted</div>
+      <div class="pipeline-stage-desc">Sent connection request, cold email, or DM. Awaiting reply.</div>
+    </div>
+    <div class="pipeline-stage" style="background:#fdf4ff; border-color:#9333ea;">
+      <div class="pipeline-stage-title">3. Engaged</div>
+      <div class="pipeline-stage-desc">They responded! Now in conversation — ask the key question: "What's the most frustrating part of it right now?"</div>
+    </div>
+    <div class="pipeline-stage" style="background:#dcfce7; border-color:#16a34a;">
+      <div class="pipeline-stage-title">4. Call Booked</div>
+      <div class="pipeline-stage-desc">Discovery call scheduled. Prep your questions and talking points. Send a Calendly link.</div>
+    </div>
+    <div class="pipeline-stage" style="background:#ffedd5; border-color:#ea580c;">
+      <div class="pipeline-stage-title">5. Proposal Sent</div>
+      <div class="pipeline-stage-desc">They're interested. Service Agreement or scope sent. Follow up in 48 hours no matter what.</div>
+    </div>
+    <div class="pipeline-stage" style="background:#f0fdf4; border-color:#15803d;">
+      <div class="pipeline-stage-title">6. CLOSED 🎉</div>
+      <div class="pipeline-stage-desc">Signed, deposited, work begins. Ask for a testimonial after delivery. Ask for a referral.</div>
+    </div>
+
+    <div class="tracker-box">
+      <div class="tracker-title">📊 Track These Every Friday</div>
+      <div class="tracker-item"><span>→</span> Emails sent → replies received</div>
+      <div class="tracker-item"><span>→</span> LinkedIn connections sent → accepted</div>
+      <div class="tracker-item"><span>→</span> DMs sent → responses</div>
+      <div class="tracker-item"><span>→</span> Discovery calls taken → proposals sent</div>
+      <div class="tracker-item"><span>→</span> Proposals sent → closed</div>
+      <div class="tracker-item"><span>→</span> Revenue this week vs. last week</div>
+    </div>
+  </div>
+
+  <!-- ===== TIPS TAB ===== -->
+  <div id="tab-tips" class="tab-panel">
+    <h2 class="section-title">Revenue-Building Pro Tips</h2>
+    <p class="section-sub">Strategies that actually move the needle for solo service businesses.</p>
+
+    <div class="tip-card"><div class="tip-icon">🎯</div><div class="tip-title">Warm Before Cold</div><div class="tip-text">Comment on a prospect's LinkedIn post BEFORE sending them a DM or email. They'll recognize your name — and your message won't feel cold anymore.</div></div>
+    <div class="tip-card"><div class="tip-icon">📊</div><div class="tip-title">Track Everything</div><div class="tip-text">Use a simple spreadsheet: Name, Company, Contact Method, Date, Status, Next Step. Review it every Friday. What you track, you improve.</div></div>
+    <div class="tip-card"><div class="tip-icon">💬</div><div class="tip-title">Lead With Pain</div><div class="tip-text">Never open with "I offer bookkeeping services." Open with "Most small businesses lose hours every week to manual reporting — does that sound familiar?" Make them feel seen first.</div></div>
+    <div class="tip-card"><div class="tip-icon">🔗</div><div class="tip-title">Referral Partners Are Gold</div><div class="tip-text">One CPA partnership can be worth 10 clients. Find CPAs who don't offer bookkeeping cleanup and ask to be their go-to person. This is your fastest path to consistent leads.</div></div>
+    <div class="tip-card"><div class="tip-icon">📈</div><div class="tip-title">Offer a Free Diagnostic</div><div class="tip-text">Offer to do a free 30-minute financial 'health check' call. No pitch — just pure value. Show them one problem you found. The close happens naturally when they trust you.</div></div>
+    <div class="tip-card"><div class="tip-icon">⏰</div><div class="tip-title">The 48-Hour Rule</div><div class="tip-text">If someone doesn't reply, follow up at exactly 48 hours. One sentence: "Wanted to make sure this didn't get buried!" — Most closes happen on the 2nd or 3rd follow-up.</div></div>
+
+    <h2 class="section-title" style="margin: 24px 0 16px;">Free Tools to Use Right Now</h2>
+
+    <div class="tool-item"><div class="tool-dot"></div><div><div class="tool-name">Hunter.io (Free)</div><div class="tool-desc">Find email addresses for local business owners from their website domain. 25 free lookups/month — enough to get started.</div></div></div>
+    <div class="tool-item"><div class="tool-dot"></div><div><div class="tool-name">Mailtrack (Free)</div><div class="tool-desc">See when your cold emails are opened. Know exactly when to follow up for maximum response rate.</div></div></div>
+    <div class="tool-item"><div class="tool-dot"></div><div><div class="tool-name">Canva (Free)</div><div class="tool-desc">Create professional LinkedIn post graphics, carousels, and infographics in minutes. No design skills needed.</div></div></div>
+    <div class="tool-item"><div class="tool-dot"></div><div><div class="tool-name">Loom (Free)</div><div class="tool-desc">Record short video walkthroughs to send to prospects instead of long emails. Personal, memorable, and way harder to ignore.</div></div></div>
+    <div class="tool-item"><div class="tool-dot"></div><div><div class="tool-name">Calendly (Free)</div><div class="tool-desc">Give prospects a link to book discovery calls — removes all the back-and-forth scheduling. Looks professional instantly.</div></div></div>
+    <div class="tool-item"><div class="tool-dot"></div><div><div class="tool-name">Google Sheets (Free)</div><div class="tool-desc">Your lead tracker. Columns: Name, Company, Source, Date Contacted, Status, Notes, Next Step. Simple and powerful.</div></div></div>
+    <div class="tool-item"><div class="tool-dot"></div><div><div class="tool-name">LinkedIn (Free)</div><div class="tool-desc">Post 5x/week. Comment daily. Connect 10–15 people/day. This is your #1 free marketing channel — treat it like a job.</div></div></div>
+
+    <div class="cta-box">
+      <div class="cta-emoji">🚀</div>
+      <div class="cta-title">Revenue Comes From Relationships</div>
+      <div class="cta-text">You don't need 100 clients. You need 3–5 great ones to start. Focus every single day on conversations, not just connections. Every person you talk to is a future client or a referral source. Showing up consistently is your superpower.</div>
+      <div class="cta-contact">Garret Hebert &bull; hebertprofessionalservices@gmail.com &bull; (601) 991-5132</div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- COLOR LEGEND FOOTER -->
+<div style="max-width:720px; margin:0 auto; padding:0 16px 32px;">
+  <div style="background:white; border-radius:12px; border:2px solid #e2e8f0; padding:16px 18px;">
+    <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8c9ab0; margin-bottom:12px;">📅 Garret's Calendar Color Key</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#374151;"><span style="width:14px;height:14px;border-radius:4px;background:#6b7280;display:inline-block;flex-shrink:0;"></span> Graphite — Focus/Deep Work</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#1e3a8a;"><span style="width:14px;height:14px;border-radius:4px;background:#1e3a8a;display:inline-block;flex-shrink:0;"></span> Blueberry — Strategy/Planning</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#0369a1;"><span style="width:14px;height:14px;border-radius:4px;background:#0284c7;display:inline-block;flex-shrink:0;"></span> Peacock — LinkedIn/Outreach</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#854d0e;"><span style="width:14px;height:14px;border-radius:4px;background:#eab308;display:inline-block;flex-shrink:0;"></span> Banana — Content Creation</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#9a3412;"><span style="width:14px;height:14px;border-radius:4px;background:#ea580c;display:inline-block;flex-shrink:0;"></span> Tangerine — Admin/Email</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#6b21a8;"><span style="width:14px;height:14px;border-radius:4px;background:#9333ea;display:inline-block;flex-shrink:0;"></span> Grape — Networking</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#991b1b;"><span style="width:14px;height:14px;border-radius:4px;background:#dc2626;display:inline-block;flex-shrink:0;"></span> Tomato — Sales/High Priority</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#5b21b6;"><span style="width:14px;height:14px;border-radius:4px;background:#7c3aed;display:inline-block;flex-shrink:0;"></span> Lavender — Learning/Growth</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#166534;"><span style="width:14px;height:14px;border-radius:4px;background:#86efac;display:inline-block;flex-shrink:0;"></span> Sage — Break/Out of Office</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#064e3b;"><span style="width:14px;height:14px;border-radius:4px;background:#059669;display:inline-block;flex-shrink:0;"></span> Basil — Client Work/Revenue</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function switchDay(day, btn) {
+    document.querySelectorAll('.day-panel').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('day-' + day).style.display = 'block';
+    btn.classList.add('active');
+    document.querySelectorAll('.block').forEach(b => b.classList.remove('open'));
+  }
+
+  function toggleBlock(block) {
+    block.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
